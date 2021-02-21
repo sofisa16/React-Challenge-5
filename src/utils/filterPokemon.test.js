@@ -26,8 +26,20 @@ describe("Filter Pokemon", () => {
     expect(theory).toStrictEqual(practice);
   });
 
-  /* BUNUS */
-  test("it should validate the 'pokeList' argument", () => {});
+  function testFn(theFn) {
+    return theFn(mockPokemonsData, "charizard");
+  }
 
-  test("it should validate the 'name' argument", () => {});
+  /* BONUS */
+  test("it should validate the 'pokeList' argument", () => {
+    const mockFn = jest.fn(filterPokemon);
+    testFn(mockFn);
+    expect(Array.isArray(mockFn.mock.calls[0][0])).toBe(true);
+  });
+
+  test("it should validate the 'name' argument", () => {
+    const mockFn = jest.fn(filterPokemon);
+    testFn(mockFn);
+    expect(typeof mockFn.mock.calls[0][1]).toBe("string");
+  });
 });
